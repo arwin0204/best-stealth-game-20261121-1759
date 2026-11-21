@@ -5,7 +5,7 @@
 // MAKEFUN_OUTPUT_DIR stands in for /output. The run is deterministic:
 // the same repository always writes the same bytes.
 
-import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -15,7 +15,13 @@ const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 // Start from a clean output directory so a second run writes identical
 // bytes — the grader runs this program twice and both runs must agree.
-rmSync(outDir, { recursive: true, force: true });
+// Clear the directory's contents instead of removing the directory
+// itself: the grader's /output is writable inside, but its parent is
+// not, so removing it fails with EPERM (rmdir) and the run exits 1.
+mkdirSync(outDir, { recursive: true });
+for (const entry of readdirSync(outDir)) {
+  rmSync(join(outDir, entry), { recursive: true, force: true });
+}
 mkdirSync(join(outDir, 'game'), { recursive: true });
 mkdirSync(join(outDir, 'screenshots'), { recursive: true });
 
