@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lantern Thief — The Moon Opal</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0a14; height: 100%; }
+  body { display: flex; align-items: center; justify-content: center; font-family: Georgia, 'Times New Roman', serif; }
+  #wrap { position: relative; width: 960px; max-width: 100vw; }
+  canvas { display: block; width: 100%; height: auto; background: #101018; border: 2px solid #3a2f1e; box-shadow: 0 0 60px rgba(0,0,0,0.9); image-rendering: auto; }
+  #hint { color: #8a7d5f; text-align: center; font-size: 13px; padding: 8px 4px 0; line-height: 1.5; }
+  #hint b { color: #d8c98a; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game" width="960" height="600"></canvas>
+  <div id="hint"><b>WASD / Arrows</b> move &nbsp;·&nbsp; <b>Shift</b> run (loud) &nbsp;·&nbsp; <b>C</b> sneak (quiet, hard to see) &nbsp;·&nbsp; <b>Click</b> toss a pebble to distract &nbsp;·&nbsp; <b>P</b> pause &nbsp;·&nbsp; <b>M</b> mute &nbsp;·&nbsp; Walk over loot to steal it, then slip out the green exit — unseen.</div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
